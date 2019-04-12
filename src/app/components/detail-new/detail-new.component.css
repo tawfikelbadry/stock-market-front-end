@@ -1,0 +1,9 @@
+.bycompany b {
+    font-size: 25px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.news-time .date{
+    color: #000;
+}

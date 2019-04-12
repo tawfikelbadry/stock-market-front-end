@@ -1,0 +1,134 @@
+<section class="profile-user">
+  <div class="up-title">
+    <h2>ابحث عن سهم</h2>
+  </div> <!-- End up-title -->
+  <div class="search-stock row">
+    <div class="form-group col-md-8 col-sm-7">
+      <input type="text" class="form-control" #key placeholder="ابحث عن سهم ..." (keyup)="searchCompanies(key.value)" >
+    </div><!-- End form-group -->
+    <div class="filter col-md-2 col-sm-3 col-xs-6">
+      
+        <i class="fas fa-sliders-h"></i>
+        تصنيف
+      
+    </div> <!-- End filter -->
+    <div class="search-icon col-md-2 col-sm-2 col-xs-6">
+      <a href="#">
+        <i class="fas fa-search"></i>
+      </a>
+    </div> <!-- End search-icon -->
+    <div class="search-filter">
+        <div class="close-filter">
+            <i class="fas fa-times-circle"></i>
+        </div> <!-- End Close -->
+        <div class="search-title">
+          <h3>حسب القطاعات</h3>
+          <div class="row">
+            <div class="col-sm-3 col-xs-6">
+                <mat-checkbox>اسم القطاع</mat-checkbox>
+            </div> <!-- End Col -->
+            <div class="col-sm-3 col-xs-6">
+                <mat-checkbox>اسم القطاع</mat-checkbox>
+            </div> <!-- End Col -->
+            <div class="col-sm-3 col-xs-6">
+                <mat-checkbox>اسم القطاع</mat-checkbox>
+            </div> <!-- End Col -->
+            <div class="col-sm-3 col-xs-6">
+                <mat-checkbox>اسم القطاع</mat-checkbox>
+            </div> <!-- End Col -->
+            <div class="col-sm-3 col-xs-6">
+                <mat-checkbox>اسم القطاع</mat-checkbox>
+            </div> <!-- End Col -->
+            <div class="col-sm-3 col-xs-6">
+                <mat-checkbox>اسم القطاع</mat-checkbox>
+            </div> <!-- End Col -->
+            <div class="col-sm-3 col-xs-6">
+                <mat-checkbox>اسم القطاع</mat-checkbox>
+            </div> <!-- End Col -->
+            <div class="col-sm-3 col-xs-6">
+                <mat-checkbox>اسم القطاع</mat-checkbox>
+            </div> <!-- End Col -->
+            <div class="col-sm-3 col-xs-6">
+                <mat-checkbox>اسم القطاع</mat-checkbox>
+            </div> <!-- End Col -->
+            <div class="col-sm-3 col-xs-6">
+                <mat-checkbox>اسم القطاع</mat-checkbox>
+            </div> <!-- End Col -->
+          </div> <!-- End row -->
+        </div> <!-- End search-title -->
+        <div class="search-title">
+            <h3>حسب السعر</h3>
+            <div class="row">
+              <div class="col-sm-6">
+                <mat-radio-group>
+                    <mat-radio-button value="1">ادني سعر</mat-radio-button>
+                    <mat-radio-button value="2">اعلي سعر</mat-radio-button>
+                  </mat-radio-group>
+              </div> <!-- End Col -->
+              <div class="col-sm-6">
+                  <span>0</span>
+                    <mat-slider 
+                    min="1" 
+                    max="100" 
+                    step="0.25"
+                    value="10.75" 
+                    thumbLabel
+                    invert
+                    tickInterval="10"
+                    
+                     ></mat-slider>
+                     <span>100</span>
+              </div> <!-- End Col -->
+            </div> <!-- End Row -->
+          </div> <!-- End search-title -->
+      </div> <!-- End search-filter -->
+  </div> <!-- End search-stock -->
+  <div class="search-result ">
+        <div class="find-stock table-responsive ">
+            <table class="table table-striped" matSort (matSortChange)="sortData($event)">
+                <thead>
+                    <tr>
+                        <th mat-sort-header="name">  
+                            اسم السهم
+                        </th>
+                        <th mat-sort-header="section">
+                            القطاع
+                        </th>
+                        <th mat-sort-header="price">
+                            السعر الحالي
+                        </th>
+                        <th mat-sort-header="changeRate">
+                            معدل التغير
+                        </th>
+                        <th mat-sort-header="changeValue">
+                            قيمة التغير
+                        </th>
+                        <th mat-sort-header="high">
+                            اعلي 
+                        </th>
+                        <th mat-sort-header="low">
+                                ادني
+                        </th>
+                        <th>
+                            شراء
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let stock of searchResult" class="border-red">
+                        <td>{{stock.companyName}}</td>
+                        <td>{{stock.companySector.name}}</td>
+                        <td>{{stock.stock.latestPrice | number:"1.2"}}</td>
+                        <td>{{stock.stock.changePercentage | number:"1.2"}}</td>
+                        <td>{{stock.stock.changeValue | number:"1.2"}}</td>
+                        <td>{{stock.stock.maxPrice | number:"1.2"}}</td>
+                        <td>{{stock.stock.minPrice | number:"1.2"}}</td>
+                        <td>
+                            <a class="green btn" mat-raised-button (click)="openDialog()">شراء</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> <!-- End table -->
+  </div> <!-- End search-result -->
+</section> <!-- End profile-user -->

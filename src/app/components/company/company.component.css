@@ -1,0 +1,7 @@
+tbody tr{
+    cursor: pointer;    
+}
+
+.stock-item{
+    min-height: 200px;
+}

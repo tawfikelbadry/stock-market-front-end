@@ -1,0 +1,68 @@
+
+<div class="wrapper">
+  <app-navbar></app-navbar>
+  <div class="main">
+    <div class="breadcrumbs">
+      <div class="container">
+        <ul>
+          <li>
+            <a href="#">الرئسية</a>
+          </li>
+          <li>
+            <a href="#">العروض</a>
+          </li>
+        </ul>
+      </div> <!-- End container -->
+    </div> <!-- End breadcrumbs -->
+    <div class="order-stock">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <h3  class="title">احدث عروض الاسهم</h3>
+            <div class="mystocks table-responsive ">
+            <table class="table table-striped" matSort (matSortChange)="sortData($event)">
+                <thead>
+                  <tr>
+                      <th mat-sort-header="name">  
+                         اسم السهم
+                      </th>
+                      <th mat-sort-header="amount">
+                           الكمية
+                      </th>
+                      <th mat-sort-header="price">
+                          السعر الحالي
+                      </th>
+                      <th mat-sort-header="buy">
+                          سعر الشراء
+                      </th>
+                      <th mat-sort-header="process">
+                          عمليات
+                      </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let stocks of sortedData" class="border-red">
+                        <td>{{stocks.name}}</td>
+                        <td>{{stocks.amount}}</td>
+                        <td>{{stocks.price}}</td>
+                        <td>{{stocks.buy}}</td>
+                        <td>
+                            <a class="green btn" mat-raised-button mat-raised-button (click)="openDialog()">شراء</a>
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+            </div> <!-- End table -->
+          </div> <!-- End Col -->
+          <div class="col-md-4">
+            <h3  class="title">التحليل البياني</h3>
+            <div class="chart">
+                <div id="curve_chart"></div>
+            </div> <!-- end chart -->
+          </div> <!-- End Col -->
+        </div> <!-- End row -->
+      </div> <!-- End container -->
+    </div> <!-- End order-stock -->
+      <app-footer></app-footer>
+    </div> <!-- End main --> 
+</div> 

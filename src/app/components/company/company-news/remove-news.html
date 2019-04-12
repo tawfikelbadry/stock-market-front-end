@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>حذف الخبر</h1>
+<div mat-dialog-content>
+  <p>هل تريد حذف الخبر</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">اغلاق</button>
+  <button mat-button (click)="removeNew()" [mat-dialog-close]="" cdkFocusInitial>موافق</button>
+</div>
+

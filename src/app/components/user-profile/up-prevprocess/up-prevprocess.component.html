@@ -1,0 +1,36 @@
+<section class="profile-user">
+  <div class="up-title">
+    <h2>العمليات السابقة</h2>
+  </div> <!-- End up-title -->
+  <div class="row stocks">
+
+      <div class="col-xs-6 " *ngFor="let tradingOp of currentUserOperations">
+        <div class="stock-item">
+            <h3>{{tradingOp.stockName}}</h3>
+            <span class="date">{{tradingOp.date | date:'fullDate'}}</span>
+            <a href="#" class="btn green absoulte">{{tradingOp.type}}</a>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="order-stocks">
+                        <strong>سعر السهم:</strong>
+                        {{tradingOp.price}}
+                    </div> <!-- End order-stocks-->
+                </div> <!--End Col-->
+                <div class="col-xs-6">
+                    <div class="order-stocks">
+                        <strong>عدد الاسهم:</strong>
+                        {{tradingOp.quantity}}
+                    </div> <!-- End order-stocks-->
+                </div> <!--End Col-->
+                <div class="col-xs-6">
+                    <div class="order-stocks">
+                        <strong>السعر الكلي:</strong>
+                        {{tradingOp.quantity * tradingOp.price}}
+                    </div> <!-- End order-stocks-->
+                </div> <!--End Col-->
+            </div> <!--End Row-->
+            </div> <!-- End stock-item -->
+        </div> <!-- End Col -->
+           
+  </div> <!-- End Row -->
+</section> <!-- End profile-user -->

@@ -1,0 +1,165 @@
+
+
+<div class="wrapper">
+  <app-navbar></app-navbar>
+  <div class="main">
+    <div class="company section-lg stock-info">
+      <div class="container">
+        <div class="company-slider">
+            <div class="row">
+              <div class="col-sm-6">
+                <h3 class="title">كل القطاعات </h3>
+              </div> <!-- End Col -->
+              <div class="col-sm-6">
+                <form style="margin:0">
+                  <div class="form-group">
+                    <input type="text"  class="form-control" placeholder="ابحث عن قطاع..." required>
+                    <a href="#"><i class="fas fa-search"></i></a>
+                  </div><!-- End Form-Group -->
+                </form>
+              </div> <!-- End Col -->
+              <div *ngFor="let sector of sectorsSet" class="col-md-3 col-sm-6 box-hidden"  >
+                  <div class="stock-item" (click)="getSectorCompanies(sector.id,sector.name)">
+                    <h3>{{sector.name}}</h3>
+                    <div class="item-stock">
+                        <div class="info-title">
+                          <p>القيمة الحالي</p>
+                        </div> <!--End Info Title -->
+                        <div class="info-static">
+                          <p>{{sector.cuurentValue | number:'1.1-2' }}</p>
+                        </div> <!--End Info Title -->
+                    </div> <!-- End item -->
+                    <div class="item-stock">
+                        <div class="info-title">
+                          <p>نسبة التغير</p>
+                        </div> <!--End Info Title -->
+                        <div class="info-static">
+                          <p>{{sector.changePercentage | number:'1.1-2'}}</p>
+                        </div> <!--End Info Title -->
+                    </div> <!-- End item -->
+                    <div class="item-stock">
+                        <div class="info-title">
+                          <p>القيمة التغير</p>
+                        </div> <!--End Info Title -->
+                        <div class="info-static">
+                          <p>{{sector.changeValue | number:'1.1-2'}}</p>
+                        </div> <!--End Info Title -->
+                    </div> <!-- End item -->
+                  </div> <!-- end Stock-item -->
+                </div> <!-- End Col -->
+            </div>  <!-- End Row -->
+            <div class="load-more">
+              <button id="loadmore" class="btn green" mat-raised-button>المزيد...</button>
+            </div> <!-- End load-more -->
+        </div> <!-- End Company slider -->
+
+        <h2 id="pointerchart" class="title"> {{selectedPointer}} </h2>
+
+        <!--line chart for company -->
+        <canvas id="lineChart" height="450" width="800"></canvas>
+
+        <br>
+        <h2 class="title" > {{selectedSector}} </h2>
+
+        <div id="sectorCompaniesTable" class="sector-table">
+            <table class="table table-striped"  matSort (matSortChange)="sortData($event)">
+                <thead>
+                    <tr>
+                        <th mat-sort-header="name">  
+                            اسم السهم
+                        </th>
+                        <th mat-sort-header="lastPrice">
+                            اخر سعر
+                        </th>
+                        <th mat-sort-header="changeRate">
+                             نسبة التغير
+                        </th>
+                        <th mat-sort-header="change">
+                             التغير
+                        </th>
+                        <th mat-sort-header="numberStock">
+                            عدد الاسهم 
+                        </th>
+                        <th mat-sort-header="priceOpen">
+                                سعر الفتح
+                        </th>
+                        <th mat-sort-header="high">
+                                اعلي سعر
+                        </th>
+                        <th mat-sort-header="low">
+                            ادني سعر
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let company of companiesSet" class="border-red">
+                        <td (click)="showCompanyProfile(company.id)" >{{company.companyName}}</td>
+                        <td>{{company.stock.latestPrice}}</td>
+                        <td>{{company.stock.changePercentage | number:"1.2" }}</td>
+                        <td>{{company.stock.changeValue | number:"1.2" }}</td>
+                        <td>{{company.companyCurrentTotalStocksNumber}}</td>
+                        <td>{{company.stock.openPrice}}</td>
+                        <td>{{company.stock.maxPrice}}</td>
+                        <td>{{company.stock.minPrice}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> <!-- End Sector-table -->
+
+        <br>
+        <h2 class="title">الشركات الاكثر تداول </h2>
+
+        <div class="sector-table">
+            <table class="table table-striped"  matSort (matSortChange)="sortData($event)">
+                <thead>
+                    <tr>
+                        <th mat-sort-header="name">  
+                            اسم السهم
+                        </th>
+                        <th mat-sort-header="lastPrice">
+                            اخر سعر
+                        </th>
+                        <th mat-sort-header="changeRate">
+                             نسبة التغير
+                        </th>
+                        <th mat-sort-header="change">
+                             التغير
+                        </th>
+                        <th mat-sort-header="numberStock">
+                            عدد الاسهم 
+                        </th>
+                        <th mat-sort-header="priceOpen">
+                                سعر الفتح
+                        </th>
+                        <th mat-sort-header="high">
+                                اعلي سعر
+                        </th>
+                        <th mat-sort-header="low">
+                            ادني سعر
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let company of topCompaniesSet" class="border-red">
+                        <td (click)="showCompanyProfile(company.id)" >{{company.companyName}}</td>
+                        <td>{{company.stock.latestPrice}}</td>
+                        <td>{{company.stock.changePercentage | number:"1.2" }}</td>
+                        <td>{{company.stock.changeValue | number:"1.2" }}</td>
+                        <td>{{company.companyCurrentTotalStocksNumber}}</td>
+                        <td>{{company.stock.openPrice}}</td>
+                        <td>{{company.stock.maxPrice}}</td>
+                        <td>{{company.stock.minPrice}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> <!-- End Sector-table -->
+
+
+
+      </div> <!-- end container -->
+    </div> <!-- End Company -->
+      <app-footer></app-footer>
+    </div> <!-- End main --> 
+</div>  
+
+

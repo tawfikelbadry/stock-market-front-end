@@ -1,0 +1,9 @@
+<h1 mat-dialog-title> الغاء الطلب </h1>
+<div mat-dialog-content>
+  <p>  هل انت متاكد من الغاء الطلب ؟</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">اغلاق</button>
+  <button mat-button (click)="removeOrder()" [mat-dialog-close]="" cdkFocusInitial>موافق</button>
+</div>
+

@@ -1,0 +1,57 @@
+<div class="profile-cover">
+    <div class="image">
+      <img src="{{loggedUserImageUrl}}" alt="profile-pic" draggable="false">
+      <!-- <div class="icon-chang">
+        <input type="file" name="user_picture" accept='image/*'>
+        <span>
+          <i class="fas fa-camera"></i>
+        </span>
+      </div> End Icon-change -->
+    </div> <!-- End image -->
+    <div class="user-info">
+      <h3>{{loggedUserName}}</h3>
+      <h5>{{loggedUserTotalMoney}}</h5>
+    </div> <!-- End user-info -->
+</div> <!-- End profile-cover -->
+<ul class="user-nav">
+  <li matTooltip="اسهمي" >
+    <a routerLink="my-stocks" class="active"> 
+      <i class="fas fa-cart-arrow-down"></i>
+      اسهمي
+    </a>
+  </li>
+  <li matTooltip="قائمة المتابعة">
+    <a routerLink="watch-list"> 
+      <i class="far fa-clock"></i>
+      قائمه المتابعة
+    </a>
+  </li>
+  <li matTooltip="العمليات السابقة">
+    <a routerLink="operations"> 
+      <i class="fas fa-dollar-sign"></i>
+      العمليات السابقة
+    </a>
+  </li>
+  <li matTooltip="ابحث عن سهم">
+    <a routerLink="find-stock"> 
+      <i class="fas fa-search"></i>
+      ابحث عن سهم
+    </a>
+  </li>
+
+  <li matTooltip="الطلبات">
+      <a routerLink="orders"> 
+        <i class="fas fa-comment"></i>
+        الطلبات
+      </a>
+  </li>
+
+  
+  <li matTooltip="العروض">
+    <a routerLink="offers"> 
+      <i class="fas fa-comment"></i>
+      العروض
+    </a>
+</li>
+
+</ul> <!-- End user-nav -->

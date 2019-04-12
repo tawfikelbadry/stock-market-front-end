@@ -1,0 +1,52 @@
+<div class="container">
+		<div id="sectorCompaniesTable" class="sector-table">
+				<table class="table table-striped"  matSort >
+					<thead>
+						<tr>
+							<th mat-sort-header="name">  
+								اسم السهم
+							</th>
+							<th mat-sort-header="lastPrice">
+								اخر سعر
+							</th>
+							<th mat-sort-header="changeRate">
+								 نسبة التغير
+							</th>
+							<th mat-sort-header="change">
+								 التغير
+							</th>
+							<th mat-sort-header="numberStock">
+								عدد الاسهم 
+							</th>
+							<th mat-sort-header="priceOpen">
+									سعر الفتح
+							</th>
+							<th mat-sort-header="high">
+									اعلي سعر
+							</th>
+							<th mat-sort-header="low">
+								ادني سعر
+							</th>
+							<th mat-sort-header="low">
+								تفعيل
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let company of unVerifiedCompanies" class="border-red">
+							<td (click)="showCompanyProfile(company.id)" >{{company.companyName}}</td>
+							<td>{{company.stock.latestPrice}}</td>
+							<td>{{company.stock.changePercentage | number:"1.2" }}</td>
+							<td>{{company.stock.changeValue | number:"1.2" }}</td>
+							<td>{{company.companyCurrentTotalStocksNumber}}</td>
+							<td>{{company.stock.openPrice}}</td>
+							<td>{{company.stock.maxPrice}}</td>
+							<td>{{company.stock.minPrice}}</td>
+							<td>  <button (click)="verifyCompany(company.id)" mat-raised-button color="primary">تأكيد</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div> <!-- End Sector-table -->
+	
+</div>

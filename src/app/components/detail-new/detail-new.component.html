@@ -1,0 +1,85 @@
+
+<div class="wrapper">
+  <app-navbar></app-navbar>
+  <div class="main">
+    <div class="breadcrumbs">
+      <div class="container">
+        <ul>
+          <li>
+            <a href="#">الرئسية</a>
+          </li>
+          <li>
+            <a href="#">الاخبار</a>
+          </li>
+        </ul>
+      </div> <!-- End container -->
+    </div> <!-- End breadcrumbs -->
+    <div class="news">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="post-news">
+              <div class="news-image">
+                <img  [src]="news.imageLink" alt="post image">
+                <div class="news-time">
+                  <span class="date" ><b>{{news.date | date:'full'}}</b></span>
+                </div> <!-- End news-time -->
+              </div> <!-- End news-image -->
+              <div class="news-title">
+                <h2>{{news.title}}</h2>
+              </div> <!-- End news-title -->
+              <div class="news-by">
+                <h4 class="bycompany">بواسطة 
+                  <b  (click)="showCompany(news.company.id)" > {{news.company.companyName}} </b>
+                 </h4>
+              </div> <!-- End news-by -->
+              <div class="news-detail">
+                <p>{{news.body}}</p>
+              </div> <!-- End news-detail -->
+            </div> <!-- End post-news -->
+            
+          </div> <!-- End Col -->
+          <div class="col-md-4">
+            <h3  class="title">التحليل البياني</h3>
+            <div class="chart">
+                <div id="curve_chart"></div>
+            </div> <!-- end chart -->
+            <h3  class="title"> الاخبار الاكثر قرائه</h3>
+            <div class="company-text">
+                <h6>
+                    قطاع 
+                    <span> البنوك</span>
+                    <span>11 يناير ,2017</span>
+                </h6>
+                <p>
+                    هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز. 
+                </p>
+            </div> <!-- End Company-Text -->
+            <div class="company-text">
+                <h6>
+                    قطاع 
+                    <span> البنوك</span>
+                    <span>11 يناير ,2017</span>
+                </h6>
+                <p>
+                    هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز. 
+                </p>
+            </div> <!-- End Company-Text -->
+            <div class="company-text">
+                <h6>
+                    قطاع 
+                    <span> البنوك</span>
+                    <span>11 يناير ,2017</span>
+                </h6>
+                <p>
+                    هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز. 
+                </p>
+            </div> <!-- End Company-Text -->
+          </div> <!-- End Col -->
+        </div> <!-- End row -->
+      </div> <!-- End container -->
+    </div> <!-- End news -->
+    
+      <app-footer></app-footer>
+    </div> <!-- End main --> 
+</div>  

@@ -1,0 +1,40 @@
+<section class="profile-user">
+  <div class="up-title">
+    <h2>اسهمي</h2>
+  </div> <!-- End up-title -->
+  <div class="order-stock table-responsive ">
+    <table class="table table-striped" matSort (matSortChange)="sortData($event)">
+        <thead>
+          <tr>
+              <th mat-sort-header="name">  
+                 اسم السهم
+              </th>
+              <th mat-sort-header="amount">
+                   الكمية
+              </th>
+              <th mat-sort-header="price">
+                  السعر الحالي
+              </th>
+              <th mat-sort-header="buy">
+                  اخر سعر شراء
+              </th>
+              <th mat-sort-header="process">
+                  عمليات
+              </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let userStock of currentuserStocks" class="border-red">
+                <td>{{userStock.stockName}}</td>
+                <td>{{userStock.quantity}}</td>
+                <td>{{userStock.latestPrice}}</td>
+                <td>{{userStock.paidPrice}}</td>
+                <td>
+                    <a class="red btn" mat-raised-button (click)="openDialogSell(userStock.stockId)">بيع</a>
+                    <a class="green btn" mat-raised-button (click)="openDialogBuy(userStock.stockId)">شراء</a>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+</div> <!-- End table -->
+</section> <!-- End profile-user -->

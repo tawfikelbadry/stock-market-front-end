@@ -1,0 +1,116 @@
+
+    <nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 col-sm-3 col-xs-6">
+                    <div class="logo">
+                        <a routerLink="/" ><img src="/assets/images/logo-rabe7.png" /></a>
+                    </div> <!-- End Logo -->
+                </div> <!-- End Col -->
+                <div class="col-md-6 col-sm-8">
+                    <button class="btn btn-responsive-nav" data-toggle="collapse" data-target=".navbar-collapse">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <ul class="navbar navbar-collapse collapse">
+                        <li>
+                            <a routerLink="/company">الشركات</a>
+                        </li>
+                        <li>
+                            <a routerLink="/all-news">الاخبار</a>
+                        </li>
+                        <!-- <li>
+                            <a routerLink="/stocks">المؤشرات</a>
+                        </li> -->
+                    </ul> <!-- End nav -->
+                </div> <!-- End Col -->
+                <div class="col-sm-1">
+                    <div class="search">
+                        <i class="fa fa-search"></i>
+                        <form class="search-head-form">
+                            <input type="text" class="form-control" placeholder="ابحث....">
+                        </form><!--End search-head-form-->
+                    </div><!--End search-->
+                </div> <!-- End col -->
+                <div class="col-md-3 col-xs-12">
+                    <div [hidden]="loggedIn" class="register-btn">
+                        <a routerLink="/login" class="btn">
+                            دخول 
+                            <i class="fas fa-user"></i>
+                        </a>
+                        <a routerLink="/signup" class="btn black">
+                            تسجيل 
+                            <i class="fas fa-user-plus"></i>
+                        </a>
+                    </div> <!-- End user-register -->
+                    <div [hidden]="!loggedIn" class="profile text-right ">
+                        <div class="notif menu">
+                            <div class="icon have-notif">
+                                <a href="#"><i class="fas fa-bell"></i></a>
+                            </div> <!-- End icon -->
+                            <div class="notif-menu drop-menu ">
+                                <div class="notif-header text-center">
+                                    <p>اشعارات</p>
+                                    <span>3</span>
+                                </div> <!-- End notif-header -->
+                                <div class="notif-body text-left scrollbar">
+                                    <div class="notif-item">
+                                        <span class="time">
+                                            <i class="far fa-clock"></i>
+                                            20 ساعه
+                                        </span>
+                                        <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.</p>
+                                    </div> <!-- End notif-item-->
+                                    <div class="notif-item">
+                                        <span class="time">
+                                            <i class="far fa-clock"></i>
+                                            20 ساعه
+                                        </span>
+                                        <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.</p>
+                                    </div> <!-- End notif-item-->
+                                    <div class="notif-item">
+                                        <span class="time">
+                                            <i class="far fa-clock"></i>
+                                            20 ساعه
+                                        </span>
+                                        <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز على الشكل الخارجي للنص أو شكل توضع الفقرات في الصفحة التي يقرأها.</p>
+                                    </div> <!-- End notif-item-->
+                                </div> <!-- End notif-body -->
+                                <div class="notif-footer text-center">
+                                    <a href="#">شاهد جميع الاشعارات
+                                        <i class="fas fa-long-arrow-alt-left"></i>
+                                    </a>
+                                </div> <!-- End notif-footer -->
+                            </div> <!-- End notif-menu-->
+                        </div> <!-- End notif -->
+                        <div class="profile-pic menu">
+                            <a class="image link" (click)="showProfile()" >
+                                <img src="assets/images/profile-avatar.png">
+                            </a>
+                            <span class="icon">
+                                <i class="fas fa-angle-down"></i>
+                            </span>
+                            <div class="drop-menu">
+                                <ul class="setting text-left">
+                                    <li>
+                                        <a (click)="showProfile()" class="link" ><i class="fas fa-user"></i>
+                                            الملف الشخصي
+                                        </a>
+                                    </li>
+                                     <li>
+                                        <a class="link" (click)="showSettingPage()" ><i class="fas fa-cog"></i>
+                                             اعدادات
+                                        </a>
+                                    </li>
+                                     <li>
+                                        <a routerLink="/" (click)="logout()" ><i class="fas fa-sign-out-alt"></i>
+                                            خروج
+                                        </a>
+                                    </li>
+                                </ul> <!-- End setting -->
+                            </div> <!-- End drop-menu -->
+                        </div> <!-- End profile-pic-->
+                    </div> <!-- End Profile -->
+                </div> <!-- End Col -->
+            </div> <!-- End Row -->
+        </div> <!-- End container -->
+    </nav>

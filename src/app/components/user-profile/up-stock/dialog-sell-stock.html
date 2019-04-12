@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>بيع السهم</h1>
+<div mat-dialog-content>
+    <p class="dialogp" >  اسم السهم :  <b> {{stockName}} </b> </p>
+    <p class="dialogp" >  السعر الحالي :  <b> {{stockPrice | number:'1.2' }} </b> </p>
+  
+    <p class="orderResponse alert alert-success" [hidden]="!isOrderDone" > تم ارسال طلب البيع بنجاح </p>
+    <form class="example-form">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="عدد الاسهم" name="count" [(ngModel)]="order.count" (keyup)="calcTotalPrice()" >
+        </mat-form-field>
+        <mat-form-field class="example-full-width"  >
+            <input matInput placeholder=" سعر السهم" name="wantedPrice" [(ngModel)]="order.wantedPrice" (keyup)="calcTotalPrice()" >
+        </mat-form-field>
+
+        <p class="dialogp" > <b> {{totalPrice}} </b>  : الاجمالى </p>
+        <p class="dialogp" > <b> {{currentUserStockquantity}} </b>  : رصيدك من السهم </p>
+
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onNoClick()">اغلاق</button>
+    <button mat-raised-button color="primary" cdkFocusInitial (click)="sendSellOrder()" >تأكيد</button>
+</div>
+

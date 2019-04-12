@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>شراء السهم</h1>
+<div mat-dialog-content>
+  <p>اسم السهم هنا</p>
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="عدد الاسهم" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder=" سعر السهم" value="">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="السعر الكلي" disabled value="5">
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="الاجمالى" disabled value="10">
+    </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">لا,شكراً</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>موافق</button>
+</div>
+

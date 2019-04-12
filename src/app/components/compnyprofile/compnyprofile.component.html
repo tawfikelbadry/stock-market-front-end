@@ -1,0 +1,318 @@
+
+<div class="wrapper">
+    <app-navbar></app-navbar>
+    <div class="main">
+      <div class="company">
+        <div class="cover-bg">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="interact" *ngIf="isTraderLogged" >
+                  <a class="green" mat-raised-button (click)="openDialog(company.stock.id)">شراء</a>
+                  <a class="follow" *ngIf="isFollowing"  mat-raised-button (click)="unfollowCompany()" >تمت المتابعة</a> <!--  followed class if follow -->
+                  <a class="unfollow" *ngIf="!isFollowing" mat-raised-button (click)="followCompany()" >متابعة</a> <!--  followed class if follow -->
+
+                </div> <!-- End interact -->
+              </div><!-- end Col -->
+            </div> <!-- End row -->
+            <div class="company-profile">
+              <div class="image">
+                <img src="{{imageUrl}}" alt="profile picture">
+              </div> <!-- end image-->
+              <div class="info">
+                <h3>{{company.companyName}}</h3>
+                <span>{{company.companySector.name}}</span>
+              </div> <!-- End info -->
+              <div class="price">
+                {{company.stock.latestPrice | number:'1.1'}}
+              </div> <!-- End  price -->
+            </div> <!-- End company-profile -->
+          </div> <!-- End Container -->
+        </div> <!-- End cover-bg -->
+          <div class="stock-info">
+            <div class="container">
+              <div class="row">
+
+                <div class="col-md-8">
+                  <div [hidden]="!isCompanyLogged" class="btn-add-news">
+                  <a  routerLink="/company/news" class="green" mat-raised-button>الاخبار</a>
+                </div>
+                    <h3 class="title"> {{company.companyName}}</h3>
+                    
+                    <!--charts for company -->
+                    <div class="button-row">
+                        <button (click)="showLineChart()" mat-raised-button color="primary">Line chart</button>
+                        <button (click)="showBarChart()" mat-raised-button color="primary">Bar Chart</button>
+                    </div>
+
+                    <canvas *ngIf="!isLine" id="lineChart" height="450" width="800"></canvas>
+                    <canvas *ngIf="isLine" id="barChart" height="450" width="800"></canvas>
+                    
+                    <div class="info-stock">
+                      
+                      <div class="row">
+                        <div class="col-sm-4">
+                          <div class="price down">
+                            <p>آخر تحديث: الأحد, مايو 06   </p>
+                            <span > {{company.stock.latestPrice | number:'1.2-3'}} <i class="fas fa-sort-down"></i></span>
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p>  {{company.stock.changeValue| number:'1.2-3'}}</p>
+                                </div> <!--End Info Title -->
+                                <div class="info-static">
+                                  <p>{{company.stock.changePercentage | number:'1.1-2'}} %</p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->
+                          </div><!-- End Price -->
+                        </div> <!-- End Col -->
+                        <div class="col-sm-4">  
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p>  فتح</p>
+                                </div> <!--End Info Title -->
+                                <div class="info-static">
+                                  <p>{{company.stock.openPrice}}</p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p>  اغلاق سابق</p>
+                                </div> <!--End Info Title -->
+                                <div class="info-static">
+                                  <p>{{company.stock.lastClosePrice}}</p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p>  اعلي</p>
+                                </div> <!--End Info Title -->
+                                <div class="info-static">
+                                  <p>{{company.stock.maxPrice}} </p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p> ادني </p>
+                                </div> <!--End Info Title -->
+                                <div class="info-static">
+                                  <p>{{company.stock.minPrice}}</p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->
+                        </div> <!-- End Col -->
+                        <div class="col-sm-4">
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p><b> اجمالي السهم</b></p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p>  حجم الداول</p>
+                                </div> <!--End Info Title -->
+                                <div class="info-static">
+                                  <p>{{company.tradingVolume}}</p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p>  قيمه الداول </p>
+                                </div> <!--End Info Title -->
+                                <div class="info-static">
+                                  <p>{{company.tradingValue}}</p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->
+                        </div> <!-- end Col -->
+                      </div> <!-- End Row -->
+                    </div> <!-- End info-stock-->
+                  <div class="row">
+                      
+                      <div class="col-sm-6">
+                          <div class="infos">
+                              <div class="info-header">
+                                <h3>معلومات عن السهم</h3>
+                              </div> <!-- End info-header -->
+                              <div class="item-stock">
+                                  <div class="info-title">
+                                    <p>القيمة الاسهمية</p>
+                                  </div> <!--End Info Title -->
+                                  <div class="info-static">
+                                    <p>{{company.stock.namedValue}}</p>
+                                  </div> <!--End Info Title -->
+                              </div> <!-- End item -->
+                              <div class="item-stock">
+                                  <div class="info-title">
+                                    <p> القيمة السوقية</p>
+                                  </div> <!--End Info Title -->
+                                  <div class="info-static">
+                                    <p>{{company.stock.latestPrice * company.companyCurrentTotalStocksNumber | number:'1.0-0' }}</p>
+                                  </div> <!--End Info Title -->
+                              </div> <!-- End item -->
+                              <div class="item-stock">
+                                  <div class="info-title">
+                                    <p>  القيمة الدفتريه</p>
+                                  </div> <!--End Info Title -->
+                                  <div class="info-static">
+                                    <p> {{company.stock.bookValue}} </p>
+                                  </div> <!--End Info Title -->
+                              </div> <!-- End item -->
+                              <div class="item-stock">
+                                  <div class="info-title">
+                                    <p> مضاعف القيمة الدفتريه</p>
+                                  </div> <!--End Info Title -->
+                                  <div class="info-static">
+                                    <p>{{company.stock.bokValueMultiplier}}</p>
+                                  </div> <!--End Info Title -->
+                              </div> <!-- End item -->
+                              <div class="item-stock">
+                                  <div class="info-title">
+                                    <p>  ربحية السهم</p>
+                                  </div> <!--End Info Title -->
+                                  <div class="info-static">
+                                    <p>{{company.stock.gainOfStock}} </p>
+                                  </div> <!--End Info Title -->
+                              </div> <!-- End item -->
+                              <div class="item-stock">
+                                  <div class="info-title">
+                                    <p> مضاعف ربحية السهم </p>
+                                  </div> <!--End Info Title -->
+                                  <div class="info-static">
+                                    <p>{{company.stock.multiplierGainofStock}} </p>
+                                  </div> <!--End Info Title -->
+                              </div> <!-- End item -->
+                              <div class="item-stock">
+                                  <div class="info-title">
+                                    <p>   العملة</p>
+                                  </div> <!--End Info Title -->
+                                  <div class="info-static">
+                                    <p>{{company.stock.tradingCurrency}}</p>
+                                  </div> <!--End Info Title -->
+                              </div> <!-- End item -->
+                              
+                              </div> <!-- end infos -->
+                      </div> <!-- end Col -->
+                      <div class="col-sm-6">
+                           
+                          <div class="infos">
+                            <div class="info-header">
+                              <h3>معلومات عن الشركة</h3>
+                            </div> <!-- End info-header -->
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p> عدد اسهم الشركة</p>
+                                </div> <!--End Info Title -->
+                                <div class="info-static">
+                                  <p>{{company.companyCurrentTotalStocksNumber}}</p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->
+                            
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p>  راس المال</p>
+                                </div> <!--End Info Title -->
+                                <div class="info-static">
+                                  <p>{{company.companyCapital}}</p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p> :مجال عملة الشركة</p>
+                                </div> <!--End Info Title -->
+                                <div class="info-static">
+                                  <p>{{company.companyWorkField}}</p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p>  تاريخ انشاء الشركة</p>
+                                </div> <!--End Info Title -->
+                                <div class="info-static">
+                                  <p>{{company.companyStartDate}} </p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->
+                            <div class="item-stock">
+                                <div class="info-title">
+                                  <p> بداية السنه الماليه </p>
+                                </div> <!--End Info Title -->
+                                <div class="info-static">
+                                  <p>12/5/2012</p>
+                                </div> <!--End Info Title -->
+                            </div> <!-- End item -->                
+                            </div> <!-- end infos -->
+                         </div> <!-- End Col -->
+                      <div class="col-md-8 col-md-offset-2">
+                          <div class="charts">
+                              <div id="curve_chart"></div>
+                          </div> <!-- end Charts -->
+                          <div class="statistic">
+                   
+                              <div class="statistic-table table-responsive ">
+                                  <table class="table table-striped" matSort (matSortChange)="sortData($event)">
+                                      <thead>
+                                        <tr>
+                                            <th mat-sort-header="name">  
+                                               اسم الشخص
+                                            </th>
+                                            <th mat-sort-header="amount">
+                                                 عدد الاسهم
+                                            </th>
+                                            <th mat-sort-header="precentage">
+                                                 النسبة
+                                            </th>
+         
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr *ngFor="let us of stockUsers" class="border-red">
+                                              <td>{{us.userFullName}}</td>
+                                              <td>{{us.quantity}}</td>
+                                              <td>{{us.percentage | number:'1.1'}}</td>
+                                          </tr>
+                                      </tbody>
+                                    </table>
+                              </div> <!-- End table -->
+                     </div> <!-- End statistic -->
+                     </div> <!-- End Col -->
+                  </div> <!-- End Row -->
+                </div><!-- End Col -->
+                  <div class="col-md-4">
+                  <h3  class="title"> الاخبار الاكثر قرائه</h3>
+              <div class="company-text">
+                  <h6>
+                      قطاع 
+                      <span> البنوك</span>
+                      <span>11 يناير ,2017</span>
+                  </h6>
+                  <p>
+                      هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز. 
+                  </p>
+              </div> <!-- End Company-Text -->
+              <div class="company-text">
+                  <h6>
+                      قطاع 
+                      <span> البنوك</span>
+                      <span>11 يناير ,2017</span>
+                  </h6>
+                  <p>
+                      هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز. 
+                  </p>
+              </div> <!-- End Company-Text -->
+              <div class="company-text">
+                  <h6>
+                      قطاع 
+                      <span> البنوك</span>
+                      <span>11 يناير ,2017</span>
+                  </h6>
+                  <p>
+                      هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء لصفحة ما سيلهي القارئ عن التركيز. 
+                  </p>
+              </div> <!-- End Company-Text -->
+                  </div> <!-- end Col-->
+              </div> <!-- End Row -->
+              </div> <!-- End Container -->
+          </div> <!-- End stock-info -->
+                 
+    </div> <!-- End company -->
+    
+        <app-footer></app-footer>
+      </div> <!-- End main --> 
+  </div>  

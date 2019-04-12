@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>شراء السهم</h1>
+<div mat-dialog-content>
+  <p class="dialogp" >  اسم السهم :  <b> {{stockName}} </b> </p>
+  <p class="dialogp" >  السعر الحالي :  <b> {{stockPrice}} </b> </p>
+
+  <p class="orderResponse alert alert-success" [hidden]="!isOrderDone" > تم ارسال طلب الشراء بنجاح </p>
+  <p class="orderResponse alert alert-danger" [hidden]="isHaveEnoughMoney" > عفوا, ليس لديك رصيد كافي </p>
+
+
+  <form class="example-form">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="عدد الاسهم" name="stockNumber" [(ngModel)]="order.count" (keyup)="calcTotalPrice()" >
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder=" سعر السهم" name="wantedPrice" [(ngModel)]="order.wantedPrice" (keyup)="calcTotalPrice()" >
+    </mat-form-field>
+    <p class="dialogp" > <b> {{totalPrice}} </b>  : الاجمالى   </p>
+    <p class="dialogp" > <b> {{currentUserMoney}} </b>  : رصيدي   </p>
+
+
+    <!-- <mat-form-field class="example-full-width">
+        <input matInput placeholder="الاجمالى" disabled value="10">
+    </mat-form-field> -->
+
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="onNoClick()">اغلاق</button>
+  <button mat-raised-button color="primary" cdkFocusInitial (click)="sendBuyOrder()" >تأكيد</button>
+</div>
+

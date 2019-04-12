@@ -1,0 +1,30 @@
+<div class="login-body">
+    <div class="login-wrapper">
+        <form class="login" method="post" >
+            <div class="logo">
+                <a routerLink="/"><h2>Eco<span>tix</span></h2></a>
+            </div>
+            <p class="title">تسجيل الدخول</p>
+            <mat-form-field>
+                <input [(ngModel)]="credentials.username" name="username" matInput placeholder="اسم المستخدم">
+                <mat-icon matSuffix><i class="fas fa-user"></i></mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+                <input [(ngModel)]="credentials.password" name="password" matInput placeholder="الرقم السري" [type]="hide ? 'password' : 'text'">
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="سجل الدخول ك..">
+                    <mat-option  value="0">شركة</mat-option>
+                    <mat-option  value="0">مستخدم عادي</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-checkbox>تذكرني</mat-checkbox>
+            <a href="#">نسيت الرقم السري ؟</a>
+            <button type="submit" (click)="onSubmit()" >
+                <i class="spinner"></i>
+                <span class="state">تسجيل الدخول</span>
+            </button>
+        </form>
+    </div> <!-- End login-wrapper -->
+</div> <!-- End login-body -->

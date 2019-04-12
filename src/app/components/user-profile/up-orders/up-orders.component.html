@@ -1,0 +1,115 @@
+<section class="profile-user">
+  <div class="up-title">
+    <h2>الطلبات</h2>
+  </div> <!-- End up-title -->
+  <div class="row stocks">
+        <div class="stock-items scrollbar row">
+            <mat-tab-group>
+                <mat-tab label="الكل" (click)="getAllTradingOrders()" >
+                        <div class="col-xs-6 " *ngFor="let order of allOrders" >
+                                <div class="stock-item">
+                                    <h3>{{order.stockName}}</h3>
+                                    <span class="date">{{order.date}}</span>
+                                    <a href="#" class="btn green absoulte">{{order.type}}</a>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <div class="order-stocks">
+                                                <strong>سعر السهم :</strong>
+                                               <b> {{order.wantedPrice}}</b>
+                                            </div> <!-- End order-stocks-->
+                                        </div> <!--End Col-->
+                                        <div class="col-xs-6">
+                                            <div class="order-stocks">
+                                                <strong>عدد الاسهم :</strong>
+                                                <b>{{order.quantity}}</b>
+                                            </div> <!-- End order-stocks-->
+                                        </div> <!--End Col-->
+                                        <div class="col-xs-6">
+                                            <div class="order-stocks">
+                                                <strong>السعر الكلي :</strong>
+                                                <b>{{order.totalPrice}}</b>
+                                            </div> <!-- End order-stocks-->
+                                        </div> <!--End Col-->
+                                    </div> <!--End Row-->
+
+                                    <a *ngIf="order.isAccepted" class="green fleft" mat-raised-button>تم </a>
+                                    <a (click)="showConfirmDialog(order.orderId)" *ngIf="!order.isAccepted" class="red btn fleft" mat-raised-button>الغاء </a>
+                                </div> <!-- End stock-item -->
+                                </div> <!-- End Col -->
+                            
+                </mat-tab>
+                <mat-tab label="طلبات البيع" (click)="getCurrentUserSellOrders()" >
+                    <div class="col-xs-6 " *ngFor="let order of sellOrders" >
+                        <div class="stock-item">
+                            <h3>{{order.stockName}}</h3>
+                            <span class="date">{{order.date}}</span>
+                            <a href="#" class="btn green absoulte">{{order.type}}</a>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="order-stocks">
+                                        <strong>سعر السهم :</strong>
+                                       <b> {{order.wantedPrice}}</b>
+                                    </div> <!-- End order-stocks-->
+                                </div> <!--End Col-->
+                                <div class="col-xs-6">
+                                    <div class="order-stocks">
+                                        <strong>عدد الاسهم :</strong>
+                                        <b>{{order.quantity}}</b>
+                                    </div> <!-- End order-stocks-->
+                                </div> <!--End Col-->
+                                <div class="col-xs-6">
+                                    <div class="order-stocks">
+                                        <strong>السعر الكلي :</strong>
+                                        <b>{{order.totalPrice}}</b>
+                                    </div> <!-- End order-stocks-->
+                                </div> <!--End Col-->
+                            </div> <!--End Row-->
+
+                            <a *ngIf="order.isAccepted" class="green fleft" mat-raised-button>تم </a>
+                            <a (click)="showConfirmDialog(order.orderId)" *ngIf="!order.isAccepted" class="red btn fleft" mat-raised-button>الغاء </a>
+                    <!-- <label class="label label-success fleft order-done" >تم </label> -->
+
+                        </div> <!-- End stock-item -->
+                        </div> <!-- End Col -->
+                            
+                </mat-tab>
+                <mat-tab label="طلبات الشراء" (click)="getCurrentUserBuyOrders()" >
+                    <div class="col-xs-6 " *ngFor="let order of buyOrders" >
+                        <div class="stock-item">
+                            <h3>{{order.stockName}}</h3>
+                            <span class="date">{{order.date}}</span>
+                            <a href="#" class="btn green absoulte">{{order.type}}</a>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="order-stocks">
+                                        <strong>سعر السهم :</strong>
+                                       <b> {{order.wantedPrice}}</b>
+                                    </div> <!-- End order-stocks-->
+                                </div> <!--End Col-->
+                                <div class="col-xs-6">
+                                    <div class="order-stocks">
+                                        <strong>عدد الاسهم :</strong>
+                                        <b>{{order.quantity}}</b>
+                                    </div> <!-- End order-stocks-->
+                                </div> <!--End Col-->
+                                <div class="col-xs-6">
+                                    <div class="order-stocks">
+                                        <strong>السعر الكلي :</strong>
+                                        <b>{{order.totalPrice}}</b>
+                                    </div> <!-- End order-stocks-->
+                                </div> <!--End Col-->
+                            </div> <!--End Row-->
+
+                            <a *ngIf="order.isAccepted" class="green fleft" mat-raised-button>تم </a>
+                            <a (click)="showConfirmDialog(order.orderId)" *ngIf="!order.isAccepted" class="red btn fleft" mat-raised-button>الغاء </a>
+                </div> <!-- End stock-item -->
+                        </div> <!-- End Col -->
+                            
+                </mat-tab>
+            </mat-tab-group>
+            
+       
+        </div> <!-- End stock-items -->
+    
+  </div> <!-- End Row -->
+</section> <!-- End profile-user -->

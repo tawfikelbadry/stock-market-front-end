@@ -1,0 +1,31 @@
+.dialogp{
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+.orderResponse{
+    text-align: center;
+}
+
+.unfollow{
+    background-color: #95a5a6;
+}
+
+.follow{
+    background-color: #3498db;
+}
+.btn-add-news{
+    margin-bottom: 58px;
+    margin-top: -93px;
+    margin-right: 80px;
+}
+
+.btn-add-news a{
+    padding: 5px 40px;
+}
+
+.button-row{
+    width: 300px;
+    padding-bottom: 30px;
+    margin: 0 auto;
+}

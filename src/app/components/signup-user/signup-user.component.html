@@ -1,0 +1,96 @@
+<div class="signup">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 hidden-xs definition">
+        <a routerLink="/"><h3>Eco<span>tix</span></h3></a>
+        <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء</p>
+        <button mat-raised-button routerLink="/">العودة للرئسية</button>
+      </div> <!-- End Col -->
+      <div class="col-md-6 col-sm-6 col-md-offset-6 col-sm-offset-6">
+        <div class="signup-form">
+          <a routerLink="/"><h2>Eco<span>tix</span></h2></a>
+          <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء</p>
+          <form class="example-form" method="POST" enctype="multipart/form-data" >
+            <div class="example-container">
+              <div class="row">
+                <div [hidden]="!isSignedUp" class="col-sm-10 col-sm-offset-1">
+                    <p class="alert alert-success signup-success" >تم التسجيل بنجاح</p>
+                </div> <!-- End Col -->
+
+                <div *ngIf="signUpResponse==-1" class="col-sm-10 col-sm-offset-1">
+                    <p class="alert alert-danger signup-success" > اسم المستخدم مستخدم سابقا</p>
+                </div> <!-- End Col -->
+
+                <div *ngIf="signUpResponse==-2" class="col-sm-10 col-sm-offset-1">
+                    <p class="alert alert-danger signup-success" >عفوا,الايميل مستخدم سابقا</p>
+                </div> <!-- End Col -->
+
+                <div class="col-sm-6">
+                  <mat-form-field>
+                    <input matInput placeholder="الاسم بالكامل" name="fullName" [(ngModel)]="normalUser.fullName" >
+                    <mat-icon matSuffix><i class="fas fa-user"></i></mat-icon>
+                  </mat-form-field>
+                </div> <!-- End Col -->
+                <div class="col-sm-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email" name="email" [(ngModel)]="normalUser.email"
+                    [formControl]="emailFormControl"
+                    [errorStateMatcher]="matcher">
+                    <mat-icon matSuffix><i class="fas fa-envelope"></i></mat-icon>
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                      من فضلك ادخل عنوان بريد الكتروني صحيح
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                      البريد الالكترونى <strong>مطلوب</strong>
+                    </mat-error>
+                  </mat-form-field>
+                </div> <!-- End Col -->
+
+                <div class="col-sm-6">
+                  <mat-form-field>
+                    <input matInput placeholder="اسم المستخدم" name="username" [(ngModel)]="normalUser.username" >
+                    <mat-icon matSuffix><i class="fas fa-user"></i></mat-icon>
+                  </mat-form-field>
+                </div> <!-- End Col -->
+
+                <div class="col-sm-6">
+                  <mat-form-field>
+                    <input matInput placeholder="الرقم السري" [type]="hide ? 'password' : 'text'" name="password" 
+                    [(ngModel)]="normalUser.password" >
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                  </mat-form-field>
+                </div> <!-- End Col -->
+                <div class="col-sm-6">
+                  <mat-form-field class="example-full-width">
+                    <input type="tel" matInput placeholder="رقم الهاتف" name="phone" [(ngModel)]="normalUser.phone" >
+                    <mat-icon matSuffix><i class="fas fa-phone"></i></mat-icon>
+                  </mat-form-field>
+                </div> <!-- End Col -->
+                
+                <div class="col-sm-6">
+                  <mat-form-field>
+                    <input matInput placeholder=" الرقم القومي" name="ssn" [(ngModel)]="normalUser.ssn" >
+                    <mat-icon matSuffix><i class="fas fa-id-card"></i></mat-icon>
+                  </mat-form-field>
+                </div> <!-- End Col -->
+                <div class="col-sm-6 col-sm-offset-3">
+                  <div class="profile-buttons-div">
+                    <img src="assets/images/default-user.png" alt="pic-user" draggable="false"  id="uploaded-singup">
+                    <label id="change-photo-label" class="button" for='change-photo'>رفع الصورة</label>
+                    <input (change)="uploadImageService.fileChangeEvent($event)" id="change-photo" name='change-photo' type='file' style='display: none' accept='image/*'>
+                  </div> <!-- End profile-buttons-div -->
+                </div> <!-- End Col -->
+                <div class="col-sm-12">
+                    <mat-checkbox>تطبيق <a href="#">الشروط والاحكام </a></mat-checkbox>
+                </div> <!-- End Col -->
+                <div class="col-sm-12">
+                    <button mat-raised-button (click)="registerNormalUser()" > تسجيل </button>
+                </div> <!-- End Col -->
+              </div> <!-- End Row -->
+              </div>
+          </form>
+        </div> <!-- End signup-form -->
+      </div> <!-- End Col -->
+    </div> <!-- End row -->
+  </div> <!-- End container -->
+</div> <!-- End signup -->

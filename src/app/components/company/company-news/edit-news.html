@@ -1,0 +1,19 @@
+<h1 mat-dialog-title> تعديل الخبر</h1>
+<div mat-dialog-content>
+  <form class="example-form">
+    <div class="alert alert-success" [hidden]="!isUpdated" >تم تعديل الخبر بنجاح</div>
+    <mat-form-field class="example-full-width">
+        <input name="title" matInput placeholder="عنوان الخبر" value="" [(ngModel)]="news.title" >
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+        <textarea name="body"  matInput #message maxlength="500" rows="5" placeholder="تفصيل الخبر" [(ngModel)]="news.body" ></textarea>
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+    </mat-form-field>
+    
+</form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">اغلاق</button>
+  <button mat-button (click)="editNews()" cdkFocusInitial>تعديل</button>
+</div>
+

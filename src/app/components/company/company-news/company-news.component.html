@@ -1,0 +1,60 @@
+
+<div class="wrapper">
+    <app-navbar></app-navbar>
+    <div class="main">
+        <div class="companyNews section-lg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-8">
+                        <h3 class="title">كل الاخبار</h3>
+                        <div class="speace-50"></div>
+                        <div class="news">
+                                <div class="item-news" *ngFor="let news of CompanyNews" >
+                                    <div class="item-img">
+                                        <img [src]="news.imageLink" alt="news image" draggable="false">
+                                    </div> <!-- End item-img-->
+                                    <div class="item-contant">
+                                        <h4>{{news.title}}</h4>
+                                        <p> {{news.body}} </p>
+                                    </div> <!-- End item-contant -->
+                                    <div class="edit-news">
+                                        <a class="green btn" mat-raised-button (click)="edit(news.id)">تعديل</a>
+                                        <a class="red btn" mat-raised-button (click)="remove(news.id)">حذف</a>        
+                                        <b><span class="date">{{news.date | date:'fullDate' }}</span></b>
+
+                                    </div> <!-- End edit-news-->
+                                </div> <!-- End item-news -->
+                        </div> <!-- End news -->
+                    </div> <!-- End Col -->
+                    <div class="col-md-6 col-sm-4">
+                        <h3 class="title">اضافة الاخبار</h3>
+                        <div class="speace-50"></div>
+                        <div class="add-news">
+                            <form class="example-form">
+                                <mat-form-field class="example-full-width">
+                                    <input name="title" [(ngModel)]="newNews.title"  matInput placeholder="عنوان الخبر" value="">
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width">
+                                    <textarea name="body" [(ngModel)]="newNews.body"  matInput #message maxlength="256" rows="5" placeholder="تفصيل الخبر"></textarea>
+                                    <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+                                </mat-form-field>
+                                <div class="pic-input">
+                                    <input type="file" (change)="uploadImageService.fileChangeEvent($event)" name="new_picture" accept='image/*'>
+                                    <i class='fa fa-camera'></i>
+                                    <h5>اضافة صورة للخبر</h5>
+                                    <img src="assets/images/detail-new.png" alt="post image" id="upload-news">
+                                    <div class='clearfix'></div>
+                                </div>
+                                <a (click)="addNewNews()" class="green btn" mat-raised-button style="width:100%" > اضافة شركة</a>
+                            </form>
+                        </div> <!-- End add-news-->
+                    </div> <!-- End Col -->
+                </div> <!-- End row-->
+            </div> <!-- End container-->
+        </div> <!-- End companyNews-->
+        <app-footer></app-footer>
+      </div> <!-- End main --> 
+  </div>  
+  
+  
+  

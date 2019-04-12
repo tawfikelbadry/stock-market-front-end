@@ -1,0 +1,149 @@
+<div class="wrapper">
+  <app-navbar></app-navbar>
+  <div class="main">
+    <div class="breadcrumbs">
+      <div class="container">
+        <ul>
+          <li>
+            <a href="#">الرئسية</a>
+          </li>
+          <li>
+            <a href="#">الاخبار</a>
+          </li>
+        </ul>
+      </div> <!-- End container -->
+    </div> <!-- End breadcrumbs -->
+    <div class="allnews">
+      <div class="container">
+        <h2 class="title" >احدث الاخبار</h2>
+        <div class="row">
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-sm-8 no-padding">
+                <div class="news-pic pointer-mouse " style="height: 500px;" (click)="showNewsDetails(topNews.id)" >
+                  <img [src]= "topNews.imageLink" alt="news image" draggable="false">
+                  <div class="news-content">
+                    <h3>{{topNews.title}}</h3>
+                    <span>
+                        <i class="fas fa-clock" ></i>
+                        {{topNews.date | date:'fullDate'}}
+                    </span>
+                    <span>
+                        <i class="fas fa-home" ></i>
+                        بواسطة <b>{{topNews.company.companyName}}</b>
+                    </span>
+                  </div> <!-- End news-content -->
+                </div> <!-- End news-pic -->
+              </div> <!-- End Col-->
+
+              <div class="col-sm-4 no-padding  pointer-mouse" *ngFor="let news of top6_1News" (click)="showNewsDetails(news.id)" >
+                <div class="news-pic" style="height: 250px;">
+                  <img [src]="news.imageLink" alt="news image" draggable="false">
+                  <div class="news-content">
+                      <h5>{{news.title}}</h5>
+                      <span>
+                          <i class="fas fa-clock" ></i>
+                          {{news.date | date:'fullDate' }}
+                        </span>
+                        <span>
+                            <i class="fas fa-home" ></i>
+                            بواسطة <b>{{news.company.companyName}}</b>
+                        </span>
+
+                  </div> <!-- End news-content -->
+                </div> <!-- End news-pic -->
+              </div> <!-- End Col-->
+              
+              <div class="speace-50"></div>
+             
+              
+           </div>
+
+           </div> <!-- End Col-->
+            <div class="col-md-3">
+              <h3  class="title">التحليل البياني</h3>
+              <h3  class="title"> الشركات الافضل</h3>
+              <div class="best-comp">
+                <ul>
+                  <li>
+                    <a>ربحا</a>
+                  </li>
+                  <li class="active">
+                    <a >خسارة</a>
+                  </li>
+                  <li>
+                    <a >قيمة</a>
+                  </li>
+                  <li>
+                    <a>كمية</a>
+                  </li>
+                </ul>
+                <div class="table-responsive drop"> <!-- have two class drop and earn --> 
+                  <table class="table table-striped"> 
+                    <tbody>
+                        <tr>
+                            <td>اسم الشركة</td>
+                            <td>55</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td>اسم الشركة</td>
+                            <td>55</td>
+                            <td>20%</td>
+                        </tr>
+                        <tr>
+                            <td>اسم الشركة</td>
+                            <td>55</td>
+                            <td>20%</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div> <!-- End table -->
+              </div> <!-- End best-comp-->
+          
+           </div> <!-- end row -->
+
+           <div class="clear" ></div>
+
+           <h3 class="title speace-50">كل الاخبار </h3>
+
+           <div class="row" >
+
+              <div class="news-item-container col-md-6" *ngFor="let news of pageNews" >
+                  <div class="item-news ">
+                      <div class="item-img">
+                        <img [src]="news.imageLink" alt="news image" draggable="false">
+                      </div> <!-- End item-img-->
+                      <div class="item-contant">
+                          <p>{{news.title}}</p>
+                          <span>قطاع {{news.company.companySector.name}}</span>
+                      </div> <!-- End item-contant -->
+
+                      <div class="news-poster"> 
+                          <span>تم النشر بواسطة : </span>                        
+                         <b><a (click)="showCompanyProfile(news.company.id)" >{{news.company.companyName}}</a></b>
+                      </div>
+
+                      <p class="news-date" >
+                          <i class="fas fa-clock" ></i>
+                          {{news.date | date:'fullDate' }}
+                      </p>
+                      <button (click)="showNewsDetails(news.id)" class="btn btn-success btn-custom " >عرض الخبر</button>
+                    </div> <!-- End item-news -->
+              </div>
+
+            
+           </div>  <!-- end row -->
+           <mat-paginator [length]="newsLength"
+              [pageSize]="10"
+              [pageSizeOptions]="[ 5, 10, 20]"
+              (page)="changePage($event)" >
+            </mat-paginator>
+
+
+      </div> <!-- End container-->
+
+    </div> <!-- End ALl news-->
+    <app-footer></app-footer>
+  </div>
+</div>

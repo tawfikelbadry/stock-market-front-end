@@ -1,0 +1,90 @@
+<div class="signup">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-6 hidden-xs definition">
+          <a routerLink="/"><h3>Eco<span>tix</span></h3></a>
+          <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء</p>
+          <button mat-raised-button routerLink="/">العودة للرئسية</button>
+        </div> <!-- End Col -->
+        <div class="col-md-6 col-sm-6 col-md-offset-6 col-sm-offset-6">
+          <div class="signup-form">
+            <a routerLink="/"><h2>Eco<span>tix</span></h2></a>
+            <p>هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى المقروء</p>
+            <form class="example-form">
+              <div class="example-container">
+                <div class="row">
+                  <div class="col-sm-12" [hidden]="!idsignedUp">
+                      <p class="alert alert-success">تم التسجيل بنجاح</p>
+                      <!--<p>من فضلك انتظر حتي يتم مراجعة بياناتك</p>-->
+                  </div> <!-- End Col -->
+                  <div class="col-sm-6">
+                    <mat-form-field>
+                      <input matInput placeholder="اسم الشركة" name="companyname" [(ngModel)]="company.companyName" >
+                      <mat-icon matSuffix><i class="fas fa-user"></i></mat-icon>
+                    </mat-form-field>
+                  </div> <!-- End Col -->
+                  <div class="col-sm-6">
+                    <mat-form-field>
+                      <input matInput placeholder="اسم المستخدم" name="username" [(ngModel)]="company.username">
+                      <mat-icon matSuffix><i class="fas fa-cogs"></i></mat-icon>
+                    </mat-form-field>
+                  </div> <!-- End Col -->
+                   <div class="col-sm-12">
+                    <mat-form-field>
+                      <input matInput placeholder="مجال عمل الشركة" name="workfield" [(ngModel)]="company.companyWorkField">
+                      <mat-icon matSuffix><i class="fas fa-cogs"></i></mat-icon>
+                    </mat-form-field>
+                  </div> <!-- End Col -->
+                  <div class="col-sm-6">
+                    <mat-form-field>
+                      <mat-select placeholder="اسم القطاع" name="sector" [(ngModel)]="company.companySector.id">
+                        <mat-option *ngFor="let sector of sectorNames" [value]="sector.id">
+                          {{ sector.name }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div> <!-- End Col -->
+                  <div class="col-sm-6">
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="picker" placeholder="تاريخ الانشاء"  name="createdDate" [(ngModel)]="company.companyStartDate">
+                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                  </div> <!-- End Col -->
+                  <div class="col-sm-6">
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="الايميل" 
+                      name="email" [(ngModel)]="company.email"
+
+                      [errorStateMatcher]="matcher">
+                      <mat-icon matSuffix><i class="fas fa-envelope"></i></mat-icon>
+                      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        من فضلك ادخل عنوان بريد الكتروني صحيح
+                      </mat-error>
+                      <mat-error *ngIf="emailFormControl.hasError('required')">
+                        البريد الالكترونى <strong>مطلوب</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </div> <!-- End Col -->
+                  <div class="col-sm-6">
+                    <mat-form-field>
+                      <input matInput placeholder="الرقم السري" [type]="hide ? 'password' : 'text'" 
+                       name="password" [(ngModel)]="company.password" >
+                      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                    </mat-form-field>
+                  </div> <!-- End Col -->
+                  <div class="col-sm-12">
+                      <mat-checkbox>تطبيق <a href="#">الشروط والاحكام </a></mat-checkbox>
+                  </div> <!-- End Col -->
+                  <div class="col-sm-12">
+                      <button mat-raised-button (click)="signUp()" > تسجيل </button>
+                  </div> <!-- End Col -->
+
+                </div> <!-- End Row -->
+                </div>
+            </form>
+          </div> <!-- End signup-form -->
+        </div> <!-- End Col -->
+      </div> <!-- End row -->
+    </div> <!-- End container -->
+  </div> <!-- End signup -->
